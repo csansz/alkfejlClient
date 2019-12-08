@@ -1,0 +1,90 @@
+<form (ngSubmit)="submit(barForm)" #barForm="ngForm">
+    <div class="form-group">
+     
+      <mat-form-field>
+        <input matInput
+          type="text"
+          name="barName"
+          [(ngModel)]="model.name"
+          aria-describedby="What is the name of the bar?"
+          placeholder="Enter name"
+          required
+          #name="ngModel">
+      </mat-form-field>
+      <mat-error *ngIf="name.invalid && (name.dirty || name.touched) && name.errors.required">
+        Name is required!
+      </mat-error>
+    </div>
+    
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput
+          type="number"
+          name="zipCode"
+          [(ngModel)]="model.zipCode"
+          aria-describedby="How much does it cost?"
+          placeholder="Enter zipCode"
+          required
+          #zipCode="ngModel">
+      </mat-form-field>
+      <mat-error *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched) && zipCode.errors.required">
+        zipCode is required!
+      </mat-error>
+    </div>
+      <div class="form-group">
+         
+        <mat-form-field>
+          <input matInput
+            type="text"
+            name="city"
+            [(ngModel)]="model.city"
+            aria-describedby="Bar??"
+            placeholder="Enter city"
+            required
+            #city="ngModel">
+        </mat-form-field>
+        <mat-error *ngIf="city.invalid && (city.dirty || city.touched) && city.errors.required">
+            City is required!
+        </mat-error>
+      </div>
+
+      <div class="form-group">
+
+      <mat-form-field>
+        <input matInput
+          type="text"
+          name="street"
+          [(ngModel)]="model.street"
+          aria-describedby="Bar??"
+          placeholder="Enter street"
+          required
+          #street="ngModel">
+      </mat-form-field>
+      <mat-error *ngIf="street.invalid && (street.dirty || street.touched) && street.errors.required">
+        Street is required!
+      </mat-error>
+     </div>
+
+     <div class="form-group">
+      <mat-form-field>
+        <input matInput
+          type="number"
+          name="houseNumber"
+          [(ngModel)]="model.houseNumber"
+          aria-describedby="What is the house number?"
+          placeholder="Enter houseNumber"
+          required
+          #houseNumber="ngModel">
+      </mat-form-field>
+      <mat-error *ngIf="houseNumber.invalid && (houseNumber.dirty || houseNumber.touched) && houseNumber.errors.required">
+          House number is required!
+      </mat-error>
+    </div>
+      
+      <button mat-raised-button
+        [disabled]="!barForm.valid" 
+        type="submit"
+        color="primary">
+        Save bar
+      </button>
+    </form>

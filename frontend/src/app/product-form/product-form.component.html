@@ -1,0 +1,83 @@
+<form (ngSubmit)="submit(productForm)" #productForm="ngForm">
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput
+          type="text"
+          name="productName"
+          [(ngModel)]="model.name"
+          aria-describedby="What is the name of the product?"
+          placeholder="Enter name"
+          required
+          #name="ngModel">
+      </mat-form-field>
+      <mat-error *ngIf="name.invalid && (name.dirty || name.touched) && name.errors.required">
+        Name is required!
+      </mat-error>
+    </div>
+    
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput
+          type="text"
+          name="price"
+          [(ngModel)]="model.price"
+          aria-describedby="How much does it cost?"
+          placeholder="Enter price"
+          required
+          #price="ngModel">
+      </mat-form-field>
+      <mat-error *ngIf="price.invalid && (price.dirty || price.touched) && price.errors.required">
+        Price is required!
+      </mat-error>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput
+          type="number"
+          name="amount"
+          [(ngModel)]="model.amount"
+          aria-describedby="What is the amount?"
+          placeholder="Enter amount"
+          required
+          #amount="ngModel">
+      </mat-form-field>
+      <mat-error *ngIf="amount.invalid && (amount.dirty || amount.touched) && amount.errors.required">
+          Amount is required!
+        </mat-error>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+
+          <mat-select placeholder="Enter unit"
+           [(ngModel)]="model.unit" name="unit">
+              <mat-option *ngFor="let unit of units" [value]="unit">
+                {{unit}}
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
+    </div>
+
+
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput
+            type="text"
+            name="ownerBar"
+            [(ngModel)]="model.ownerBar"
+            aria-describedby="Bar??"
+            placeholder="Enter bar name"
+            required
+            #ownerBar="ngModel">
+        </mat-form-field>
+      </div>
+      
+      <button mat-raised-button
+        [disabled]="!productForm.valid" 
+        type="submit"
+        color="primary">
+        Save product
+      </button>
+    </form>

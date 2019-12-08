@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col">
+      <h1 class="display-2">Products</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Unit</th>
+           <th scope="col">Bar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products" (click)="onSelectProduct(product)" [class.table-info]="product === selectedProduct" >
+            <th scope="row">{{ product.id }}</th>
+            <td>
+              <a [routerLink]="['/products', product.id]">
+                {{ product.name }}
+              </a>
+            </td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.amount }}</td>
+            <td>{{ product.unit }}</td>
+            <td>{{ product.ownerBar }}</td>
+            <td>
+              <button mat-raised-button color="primary" (click)="onDeleteClick(product.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+ <button mat-raised-button color="primary" (click)="onNewClick()">New product</button>
+  <div class="col" *ngIf="selectedProduct">
+    <product-form [product]="selectedProduct" (onSubmit)="onFormSubmit($event)"></product-form>
+  </div>
+ 

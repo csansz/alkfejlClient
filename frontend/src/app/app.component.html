@@ -1,0 +1,48 @@
+<mat-toolbar color="primary">
+  <button mat-button routerLink="/"> 
+    <mat-icon>home</mat-icon>
+    Bar-Stock
+  </button>
+
+  <span class="fill-remaining-space" fxHide="false" fxHide.gt-sm></span>
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+        <div *ngIf="authService.isLoggedIn && authService.user.type === 'ROLE_ADMIN'">
+            <button mat-button routerLink="/products">Products</button>
+            <button mat-button routerLink="/bars">Bars</button>
+            <button mat-button routerLink="/users">Users</button>
+            <span>Hello, {{ authService.user.username }}!</span>
+          <button mat-button (click)="logout()">Logout</button>
+        </div>
+        <div *ngIf="authService.isLoggedIn && authService.user.type === 'ROLE_BOSS'">
+            <button mat-button routerLink="/products">Products</button>
+            <button mat-button routerLink="/users">Users</button>
+            <span>Hello, {{ authService.user.username }}!</span>
+            <button mat-button (click)="logout()">Logout</button>
+        </div>
+        <div *ngIf="authService.isLoggedIn && authService.user.type === 'ROLE_BARTENDER'">
+            <button mat-button routerLink="/products">Products</button>
+            <span>Hello, {{ authService.user.username }}!</span>
+            <button mat-button (click)="logout()">Logout</button>
+        </div>
+    <div *ngIf="!authService.isLoggedIn">
+      <button mat-button routerLink="/login">Login</button>
+    </div>
+  </div>
+  <button mat-icon-button [matMenuTriggerFor]="menu" fxHide="false" fxHide.gt-sm>
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-menu xPosition="before" #menu="matMenu">
+  <div *ngIf="authService.isLoggedIn">
+    <button mat-menu-item routerLink="/products">Products</button>
+    <button mat-menu-item routerLink="/bars">Bars</button>
+    <button mat-menu-item routerLink="/users">Users</button>
+
+    <button mat-menu-item (click)="logout()">Logout</button>
+  </div>
+  <div *ngIf="!authService.isLoggedIn">
+    <button mat-menu-item routerLink="/login">Login</button>
+  </div>
+</mat-menu>
+
+<router-outlet></router-outlet>

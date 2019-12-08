@@ -1,0 +1,88 @@
+<form (ngSubmit)="submit(userForm)" #userForm="ngForm">
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput
+          type="text"
+          name="userName"
+          [(ngModel)]="model.name"
+          aria-describedby="What is the name of the user?"
+          placeholder="Enter name"
+          required
+          #name="ngModel">
+      </mat-form-field>
+      <mat-error *ngIf="name.invalid && (name.dirty || name.touched) && name.errors.required">
+        Name is required!
+      </mat-error>
+    </div>
+    
+    <div class="form-group">
+        <mat-form-field>
+          <input matInput
+            type="text"
+            name="password"
+            [(ngModel)]="model.password"
+            aria-describedby="What is your password?"
+            placeholder="Enter password"
+            required
+            #password="ngModel">
+        </mat-form-field>
+        <mat-error *ngIf="password.invalid && (password.dirty || password.touched) && password.errors.required">
+          Password is required!
+        </mat-error>
+    </div>
+
+    <div class="form-group">
+        <mat-form-field>
+          <input matInput
+            type="text"
+            name="type"
+            [(ngModel)]="model.type"
+            aria-describedby="What is the type of the user?"
+            placeholder="Enter type"
+            required
+            #type="ngModel">
+        </mat-form-field>
+        <mat-error *ngIf="type.invalid && (type.dirty || type.touched) && type.errors.required">
+            type is required!
+        </mat-error>
+      </div>
+
+      <div class="form-group">
+          <mat-form-field>
+            <input matInput
+              type="text"
+              name="shift"
+              [(ngModel)]="model.shift"
+              aria-describedby="What is the shift of the user?"
+              placeholder="Enter shift"
+              required
+              #shift="ngModel">
+          </mat-form-field>
+          <mat-error *ngIf="shift.invalid && (shift.dirty || shift.touched) && shift.errors.required">
+              shift is required!
+          </mat-error>
+        </div>
+
+        <div class="form-group">
+            <mat-form-field>
+              <input matInput
+                type="text"
+                name="boss"
+                [(ngModel)]="model.boss"
+                aria-describedby="What is the boss of the user?"
+                placeholder="Enter boss"
+                required
+                #boss="ngModel">
+            </mat-form-field>
+            <mat-error *ngIf="boss.invalid && (boss.dirty || boss.touched) && boss.errors.required">
+                boss is required!
+            </mat-error>
+          </div>
+      
+      <button mat-raised-button
+        [disabled]="!userForm.valid" 
+        type="submit"
+        color="primary">
+        Save user
+      </button>
+    </form>

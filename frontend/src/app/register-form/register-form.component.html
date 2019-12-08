@@ -1,0 +1,53 @@
+<form (ngSubmit)="submit(registerForm)" #registerForm="ngForm">
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput
+          type="text"
+          name="username"
+          [(ngModel)]="model.username"
+          aria-describedby="Enter your username"
+          placeholder="Enter name"
+          required
+          #name="ngModel">
+      </mat-form-field>
+      <mat-error *ngIf="username.invalid && (username.dirty || username.touched) && username.errors.required">
+        Name is required!
+      </mat-error>
+    </div>
+    
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput
+          type="text"
+          name="password"
+          [(ngModel)]="model.password"
+          aria-describedby="Set up your password"
+          placeholder="Enter password"
+          required
+          #price="ngModel">
+      </mat-form-field>
+      <mat-error *ngIf="password.invalid && (password.dirty || password.touched) && password.errors.required">
+        Password is required!
+      </mat-error>
+    </div>
+
+    
+    <div class="form-group">
+      <mat-form-field>
+
+          <mat-select placeholder="Select UserType"
+           [(ngModel)]="model.type" name="type">
+              <mat-option *ngFor="let type of UserType" [value]="type">
+                {{role}}
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
+    </div>
+
+      <button mat-raised-button
+        [disabled]="!registerForm.valid" 
+        type="submit"
+        color="primary">
+        Register
+      </button>
+</form>

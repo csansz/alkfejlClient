@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col">
+      <h1 class="display-2">Users</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Role</th>
+            <th scope="col">Shift</th>
+            <th scope="col">Boss</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users" (click)="onSelectUser(user)" [class.table-info]="user === selectedUser" >
+            <th scope="row">{{ user.id }}</th>
+            <td>
+              <a [routerLink]="['/users', user.id]">
+                {{ user.username }}
+              </a>
+            </td>
+            <td>{{ user.type }}</td>
+            <td>{{ user.shift }}</td>
+            <td>{{ user.boss }}</td>
+            <td>
+              <button mat-raised-button color="primary" (click)="onDeleteClick(user.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  
+  <button mat-raised-button color="primary" (click)="onNewClick()">New user</button>
+  <div class="col" *ngIf="selectedUser">
+    <user-form [user]="selectedUser" (onSubmit)="onFormSubmit($event)"></user-form>
+  </div>  -->
+ 
